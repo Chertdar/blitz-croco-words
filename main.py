@@ -1,17 +1,24 @@
+# Создать в репозиторие файл main.py
+# Вывести на экран путь к директории, где лежит файл
+# Закоммитить, приложить скрин и коммит.
+
 import os
-from pathlib import Path
 from zipfile import ZipFile
 
-ZIP_FILENAME = "croco-blitz-source.zip"
+current_file = os.path.relpath(__file__)
+current_directory = os.path.dirname(current_file)
+
+PATH_FILE_ZIP = "croco-blitz-source.zip"
 
 
-def read_zipped_file():
-    current_folder = os.path.dirname(os.path.realpath(__file__))
-
-    with ZipFile(Path(current_folder) / 'src' / ZIP_FILENAME) as archive:
+def zip_f():
+    with ZipFile(PATH_FILE_ZIP, mode="r") as archive:
+        print("Список файлов в архиве: ")
         for f in archive.namelist():
             print(f)
 
 
-if __name__ == "__main__":
-    read_zipped_file()
+if __name__ == '__main__':
+    print(current_file)
+
+    zip_f()
